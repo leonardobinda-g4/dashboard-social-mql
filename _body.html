@@ -1,0 +1,125 @@
+<div class="header">
+  <div class="header-left">
+    <h1>Dashboard MQL Social</h1>
+    <p>Funil de Marketing &middot; &Aacute;rea Social &middot; Instagram</p>
+  </div>
+  <div class="header-badge">Live Data</div>
+</div>
+
+
+<div class="controls-wrap">
+  <!-- LINHA 1: Período, Perfil, Tipo MQL -->
+  <div class="controls-row">
+    <span class="controls-label">Per&iacute;odo</span>
+    <div class="filter-wrap" id="periodoWrap">
+      <div class="filter-trigger" id="periodoTrigger" onclick="toggleFilterDD('periodo')">
+        <span id="periodoLabel">&Uacute;ltimos 30 dias</span>
+        <span class="filter-arrow">&#9660;</span>
+      </div>
+      <div class="filter-dropdown" id="periodoDropdown">
+        <div class="dd-section-title">Presets</div>
+        <div class="dd-option" data-v="1" onclick="pickPeriodo(this)">Hoje</div>
+        <div class="dd-option" data-v="2" onclick="pickPeriodo(this)">Ontem</div>
+        <div class="dd-divider"></div>
+        <div class="dd-option" data-v="7" onclick="pickPeriodo(this)">&Uacute;ltimos 7 dias</div>
+        <div class="dd-option" data-v="14" onclick="pickPeriodo(this)">&Uacute;ltimos 14 dias</div>
+        <div class="dd-option" data-v="28" onclick="pickPeriodo(this)">&Uacute;ltimos 28 dias</div>
+        <div class="dd-option selected" data-v="30" onclick="pickPeriodo(this)">&Uacute;ltimos 30 dias</div>
+        <div class="dd-option" data-v="90" onclick="pickPeriodo(this)">&Uacute;ltimos 90 dias</div>
+        <div class="dd-option" data-v="180" onclick="pickPeriodo(this)">&Uacute;ltimos 180 dias</div>
+        <div class="dd-option" data-v="365" onclick="pickPeriodo(this)">&Uacute;ltimos 365 dias</div>
+        <div class="dd-option" data-v="ytd" onclick="pickPeriodo(this)">Ano at&eacute; hoje</div>
+        <div class="dd-divider"></div>
+        <div class="dd-option" data-v="this_week" onclick="pickPeriodo(this)">Esta semana</div>
+        <div class="dd-option" data-v="this_month" onclick="pickPeriodo(this)">Este m&ecirc;s</div>
+        <div class="dd-option" data-v="this_quarter" onclick="pickPeriodo(this)">Este trimestre</div>
+        <div class="dd-option" data-v="this_year" onclick="pickPeriodo(this)">Este ano</div>
+        <div class="dd-divider"></div>
+        <div class="dd-option" data-v="prev_week" onclick="pickPeriodo(this)">Semana anterior</div>
+        <div class="dd-option" data-v="prev_month" onclick="pickPeriodo(this)">M&ecirc;s anterior</div>
+        <div class="dd-option" data-v="prev_quarter" onclick="pickPeriodo(this)">Trimestre anterior</div>
+        <div class="dd-option" data-v="prev_year" onclick="pickPeriodo(this)">Ano anterior</div>
+        <div class="dd-divider"></div>
+        <div class="dd-option" data-v="9999" onclick="pickPeriodo(this)">Tudo</div>
+        <div class="dd-divider"></div>
+        <div class="dd-section-title">Personalizado</div>
+        <div class="dd-custom-range">
+          <input type="date" id="dateFrom" class="date-input" onchange="applyCustomRange()">
+          <span style="font-size:11px;color:#999">at&eacute;</span>
+          <input type="date" id="dateTo" class="date-input" onchange="applyCustomRange()">
+        </div>
+      </div>
+    </div>
+
+    <span class="controls-label">Perfil</span>
+    <div class="filter-wrap" id="perfilWrap">
+      <div class="filter-trigger" id="perfilTrigger" onclick="toggleFilterDD('perfil')">
+        <span id="perfilLabel">Todos os perfis</span>
+        <span class="filter-arrow">&#9660;</span>
+      </div>
+      <div class="filter-dropdown" id="perfilDropdown">
+        <div class="dd-option selected" data-p="todos" onclick="clickPerfil(this)">
+          <div class="check-box">&#10003;</div><span>Todos</span>
+        </div>
+        <div class="dd-divider"></div>
+        <div class="dd-option" data-p="tallis" onclick="clickPerfil(this)">
+          <div class="check-box">&#10003;</div><span>Tallis Gomes</span>
+        </div>
+        <div class="dd-option" data-p="alfredo" onclick="clickPerfil(this)">
+          <div class="check-box">&#10003;</div><span>Alfredo Soares</span>
+        </div>
+        <div class="dd-option" data-p="g4" onclick="clickPerfil(this)">
+          <div class="check-box">&#10003;</div><span>G4</span>
+        </div>
+        <div class="dd-option" data-p="nardon" onclick="clickPerfil(this)">
+          <div class="check-box">&#10003;</div><span>Bruno Nardon</span>
+        </div>
+        <div class="dd-divider"></div>
+        <div class="dd-option" data-p="outros" onclick="clickPerfil(this)">
+          <div class="check-box">&#10003;</div><span>Outros</span>
+        </div>
+      </div>
+    </div>
+
+    <span class="controls-label">Tipo MQL</span>
+    <div class="metric-pills" id="mqlTypePills">
+      <div class="metric-pill active" data-t="bio" style="--pill-color:#1d4ed8" onclick="clickMqlTypePill(this)"><span class="pill-dot"></span>Bio</div>
+      <div class="metric-pill active" data-t="stories" style="--pill-color:#22d3ee" onclick="clickMqlTypePill(this)"><span class="pill-dot"></span>Stories</div>
+      <div class="metric-pill active" data-t="outros" style="--pill-color:#93c5fd" onclick="clickMqlTypePill(this)"><span class="pill-dot"></span>Outros</div>
+    </div>
+  </div>
+
+  <!-- LINHA 2: Métricas Feed -->
+  <div class="controls-row">
+    <span class="controls-label">M&eacute;tricas Feed</span>
+    <div class="metric-pills" id="feedMetricPills"></div>
+  </div>
+
+  <!-- LINHA 3: Métricas Stories -->
+  <div class="controls-row">
+    <span class="controls-label">M&eacute;tricas Stories</span>
+    <div class="metric-pills" id="storyMetricPills"></div>
+  </div>
+</div>
+
+<div class="chart-card">
+  <div class="chart-header">
+    <span class="chart-title">MQL vs Engajamento &mdash; vis&atilde;o di&aacute;ria</span>
+    <div class="chart-totals" id="chartTotals"></div>
+  </div>
+  <canvas id="chart"></canvas>
+</div>
+
+<div class="drilldown-panel" id="drilldownPanel" style="display:none">
+  <div class="drilldown-header">
+    <div class="drilldown-title">
+      <span id="drilldownDate"></span>
+      <span class="drilldown-close" onclick="closeDrilldown()">&times;</span>
+    </div>
+    <div class="drilldown-tabs">
+      <button class="dtab active" data-tab="posts" onclick="switchDrillTab(this)">Posts</button>
+      <button class="dtab" data-tab="stories" onclick="switchDrillTab(this)">Stories</button>
+    </div>
+  </div>
+  <div class="drilldown-body" id="drilldownBody"></div>
+</div>
